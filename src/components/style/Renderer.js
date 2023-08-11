@@ -89,7 +89,7 @@ let builtinDrawIcon = function ({ qrcode, params, title, icon }) {
             </g>
         )
 
-        const GpayIcon = (
+        const WeChatIcon = (
                 <rect width="100" height="100" fill="#07c160"/>
                 <image 
                   xlinkHref="https://raw.githubusercontent.com/ExoduxNile/qrbtf/master/src/components/svg/SVG/gpay.png" 
