@@ -90,16 +90,26 @@ let builtinDrawIcon = function ({ qrcode, params, title, icon }) {
         )
 
         const WeChatIcon = (
-                <rect width="100" height="100" fill="#07c160"/>
-                <image xlinkHref="https://raw.githubusercontent.com/ExoduxNile/qrbtf/master/src/components/svg/SVG/gpay.png" width="100" height="100"/>
+                <>
+            <rect width="100" height="100" fill="#07c160" />
+            <image
+              xlinkHref="https://raw.githubusercontent.com/ExoduxNile/qrbtf/master/src/components/svg/SVG/gpay.png"
+              width="100"
+              height="100"
+            />
+            </>
         )
 
         const WeChatPayIcon = (
+                <>
              <image xlinkHref="https://raw.githubusercontent.com/ExoduxNile/qrbtf/master/src/components/svg/SVG/chase.png" width="100" height="100"/>
+             </>
         )
 
         const AlipayIcon = (
+        <>
              <image xlinkHref="https://raw.githubusercontent.com/ExoduxNile/qrbtf/master/src/components/svg/SVG/cashapp.png" width="100" height="100"/>
+             </>
         )
 
         function builtinIcon() {
