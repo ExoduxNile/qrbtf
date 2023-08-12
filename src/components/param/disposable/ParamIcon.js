@@ -42,10 +42,11 @@ const ParamIcon = ({icon, onBlur, onKeyPress}) => (
                 onChange={(e) => onBlur({...icon, enabled: e.target.value})}>
                <option value={0}>None</option>
 <option value={1}>Custom</option>
-<option value={2}>WeChat - Small</option>
-<option value={3}>WeChat</option>
-<option value={4}>WeChat Pay</option>
-<option value={5}>Alipay</option>
+<option value={2}>Gpay</option>
+<option value={3}>Paypal</option>
+<option value={4}>Chase</option>
+<option value={5}>Cashapp</option>
+<option value={6}>Applepay</option>
 
             </select>
         </FrameworkParam>

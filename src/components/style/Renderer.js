@@ -120,7 +120,7 @@ let builtinDrawIcon = function ({ qrcode, params, title, icon }) {
             } else if (iconMode === 5) {
                 return Cashapp
             }
-            else if (iconMode === 5) {
+            else if (iconMode === 6) {
                 return Applepay
             }
         }
