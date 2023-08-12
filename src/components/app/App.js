@@ -17,12 +17,12 @@ ReactGA.initialize('G-N6SB8GPHLZ');
 
 ReactGA.addTrackers(
     [
-        {
+        /*{
             trackingId: 'UA-165845289-1',
             gaOptions: {
                 name: 'trackerUA',
             }
-        },
+        },*/
         {
             trackingId: 'G-N6SB8GPHLZ',
             gaOptions: { name: 'trackerG' }
