@@ -84,7 +84,7 @@ let builtinDrawIcon = function ({ qrcode, params, title, icon }) {
 
         const Paypal = (
                 <>
-            <rect width="100" height="100" fill="#07c160" />
+            <rect width="100" height="100" fill="#fff" />
             <image
               xlinkHref="https://raw.githubusercontent.com/ExoduxNile/qrbtf/master/src/components/svg/SVG/paypal.png"
               width="100"
