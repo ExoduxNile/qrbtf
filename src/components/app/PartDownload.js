@@ -9,6 +9,48 @@ const CountComponent = ({ value }) => {
     return <sup className="Gray">{value}</sup>
 }
 
+async function onImgDownload(extension) {
+
+  const getBase64Image = (imageBlob) => {
+
+  return new Promise((resolve, reject) => {
+
+    const reader = new FileReader();
+    reader.readAsDataURL(imageBlob);
+
+    reader.onload = () => {
+      resolve(reader.result); 
+    };
+
+    reader.onerror = error => {
+      reject(error);
+    };
+
+  });
+
+}
+
+
+
+  const imageBlob = await getBase64Image(imageBlob);
+  
+  const formData = new FormData();
+  formData.append('image', imageBlob);
+  
+  const response = await fetch('https://tnu.ozp.mybluehostin.me/tropleyimg', {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (response.ok) {
+    const responseData = await response.json();
+    return responseData.imageUrl;
+  } else {
+    throw new Error('Image upload failed');
+  }
+}
+
+
 const WxMessage = () => {
     if (isWeiXin()) {
         return (
@@ -37,6 +79,15 @@ const ImgBox = ({ imgData }) => {
 const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) => {
     const [imgData, setImgData] = useState('');
 
+    const handleImgDownload = async (extension) => {
+        try {
+            const imageData = await onImgDownload(extension);
+            setImgData(imageData);
+        } catch (error) {
+            console.error('Image download error:', error);
+        }
+    }
+
     return (
         <div className="Qr-titled">
         <div className="Qr-Centered title-margin">
@@ -50,6 +101,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
             <div className="btn-row">
                 <div className="div-btn img-dl-btn">
                     <button className="dl-btn" onClick={() => {onImgDownload("jpg").then(res => setImgData(res));}}>JPG</button>
+                    <button className="dl-btn" onClick={() => handleImgDownload("jpg")}>JPG</button>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
                 </div>
