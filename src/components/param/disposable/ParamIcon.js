@@ -45,7 +45,7 @@ const ParamIcon = ({icon, onBlur, onKeyPress}) => (
 <option value={2}>Gpay</option>
 <option value={3}>Paypal</option>
 <option value={4}>Chase</option>
-<option value={5}>Cashapp</option>
+<option value={5}>CashApp</option>
 <option value={6}>Applepay</option>
 
             </select>
