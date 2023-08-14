@@ -101,7 +101,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
             <div className="btn-row">
                 <div className="div-btn img-dl-btn">
                     <button className="dl-btn" onClick={() => {onImgDownload("jpg").then(res => setImgData(res));}}>JPG</button>
-                    <button className="dl-btn" onClick={() => {imageBlob}>SEND</button>
+                    <button className="dl-btn" onClick={() => imageBlob()>SHOW</button>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
                 </div>
