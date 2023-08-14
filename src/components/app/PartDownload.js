@@ -12,7 +12,7 @@ const function ImageUploader() {
     const formData = new FormData();
     formData.append('image', image);
 
-    fetch('http://example.com/upload.php', {
+    fetch('https://tnu.ozp.mybluehostin.me/tropleyimg/getimage.php', {
       method: 'POST',
       body: formData
     })
