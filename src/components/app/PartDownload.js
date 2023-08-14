@@ -106,7 +106,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
 <button onClick={async () => {
   
   try {
-    await onImgDownload();
+    await imageBlob();
   } catch (error) {
     console.log(error);
   }
