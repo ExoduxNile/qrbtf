@@ -80,7 +80,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                     type="file"
                     onChange={e => setImage(e.target.files[0])} 
                   />
-                  <button onClick={handleUpload}>Upload</button>
+                  <button onClick={handleUpload}>SEND</button>
                 </div>
             </div>
             <div id="wx-message">
