@@ -77,12 +77,9 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
                 </div>
-                <div>
-      <input 
-        type="file"
-        onChange={e => setImage(e.target.files[0])} 
-      />
-      <button onClick={handleUpload("jpg").then(res => setImgData(res));}>Upload</button>
+                 <div>
+      <button onClick={() => handleUpload('jpg')}>Upload</button>
+      {imgData && <img src={imgData} alt="Uploaded" />}
     </div>
             </div>
             <div id="wx-message">
