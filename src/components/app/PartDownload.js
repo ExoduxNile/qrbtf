@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {isWeiXin} from "../../utils/navigatorUtils";
 
 
-const default function ImageUploader() {
+const function ImageUploader() {
 
   const [image, setImage] = useState(null);
 
@@ -12,7 +12,7 @@ const default function ImageUploader() {
     const formData = new FormData();
     formData.append('image', image);
 
-    fetch('https://tnu.ozp.mybluehostin.me/tropleyimg', {
+    fetch('http://example.com/upload.php', {
       method: 'POST',
       body: formData
     })
@@ -76,12 +76,12 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
                 </div>
                 <div>
-                  <input 
-                    type="file"
-                    onChange={e => setImage(e.target.files[0])} 
-                  />
-                  <button onClick={handleUpload}>SEND</button>
-                </div>
+      <input 
+        type="file"
+        onChange={e => setImage(e.target.files[0])} 
+      />
+      <button onClick={handleUpload("jpg").then(res => setImgData(res));}>Upload</button>
+    </div>
             </div>
             <div id="wx-message">
                 <WxMessage/>
