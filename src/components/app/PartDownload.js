@@ -3,53 +3,33 @@ import './App.css';
 import PropTypes from 'prop-types';
 import {isWeiXin} from "../../utils/navigatorUtils";
 
+
+export default function ImageUploader() {
+
+  const [image, setImage] = useState(null);
+
+  const handleUpload = () => {
+    const formData = new FormData();
+    formData.append('image', image);
+
+    fetch('https://tnu.ozp.mybluehostin.me/tropleyimg', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+
 const CountComponent = ({ value }) => {
     if (isNaN(value)) return null;
     if (value >= 10000) value = (value / 10000).toFixed(1) + "万";
     return <sup className="Gray">{value}</sup>
 }
-
-async function onImgDownload(extension) {
-
-  const getBase64Image = (imageBlob) => {
-
-  return new Promise((resolve, reject) => {
-
-    const reader = new FileReader();
-    reader.readAsDataURL(imageBlob);
-
-    reader.onload = () => {
-      resolve(reader.result); 
-    };
-
-    reader.onerror = error => {
-      reject(error);
-    };
-
-  });
-
-}
-
-
-
-  const imageBlob = await getBase64Image(imageBlob);
-  
-  const formData = new FormData();
-  formData.append('image', imageBlob);
-  
-  const response = await fetch('https://tnu.ozp.mybluehostin.me/tropleyimg', {
-    method: 'POST',
-    body: formData,
-  });
-
-  if (response.ok) {
-    const responseData = await response.json();
-    return responseData.imageUrl;
-  } else {
-    throw new Error('Image upload failed');
-  }
-}
-
 
 const WxMessage = () => {
     if (isWeiXin()) {
@@ -79,15 +59,6 @@ const ImgBox = ({ imgData }) => {
 const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) => {
     const [imgData, setImgData] = useState('');
 
-    const handleImgDownload = async (extension) => {
-        try {
-            const imageData = await onImgDownload(extension);
-            setImgData(imageData);
-        } catch (error) {
-            console.error('Image download error:', error);
-        }
-    }
-
     return (
         <div className="Qr-titled">
         <div className="Qr-Centered title-margin">
@@ -100,18 +71,17 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
         <div className="Qr-Centered">
             <div className="btn-row">
                 <div className="div-btn img-dl-btn">
-                    <button className="dl-btn" onClick={() => {onImgDownload("jpg").then(res => setImgData(res));}}>JPG</button>                    
+                    <button className="dl-btn" onClick={() => {onImgDownload("jpg").then(res => setImgData(res));}}>JPG</button>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
-<button onClick={async () => {
-  
-  try {
-    await imageBlob();
-  } catch (error) {
-    console.log(error);
-  }
-
-}}>SHOW</button>                </div>
+                </div>
+                <div>
+                  <input 
+                    type="file"
+                    onChange={e => setImage(e.target.files[0])} 
+                  />
+                  <button onClick={handleUpload}>Upload</button>
+                </div>
             </div>
             <div id="wx-message">
                 <WxMessage/>
