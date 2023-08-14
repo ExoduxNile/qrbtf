@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {isWeiXin} from "../../utils/navigatorUtils";
 
 
-const function ImageUploader() {
+const ImageUploader() {
 
   const [image, setImage] = useState(null);
 
