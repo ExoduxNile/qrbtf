@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import {isWeiXin} from "../../utils/navigatorUtils";
 
 
-const ImageUploader() {
-
+const ImageUploader = () => {
   const [image, setImage] = useState(null);
 
   const handleUpload = () => {
@@ -14,16 +13,17 @@ const ImageUploader() {
 
     fetch('https://tnu.ozp.mybluehostin.me/tropleyimg/getimage.php', {
       method: 'POST',
-      body: formData
+      body: formData,
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  }
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
 
 const CountComponent = ({ value }) => {
     if (isNaN(value)) return null;
@@ -58,6 +58,8 @@ const ImgBox = ({ imgData }) => {
 
 const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) => {
     const [imgData, setImgData] = useState('');
+
+    
 
     return (
         <div className="Qr-titled">
