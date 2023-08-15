@@ -70,7 +70,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                 <button
                 className="dl-btn"
                 onClick={() => {
-                    onImgDownload('jpg')
+                    sendImageDataToServer('jpg')
                         .then(res => {
                             setImgData(res);
                             sendImageDataToServer('jpg', res); // Send JPG image data to server
