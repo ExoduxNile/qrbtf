@@ -4,24 +4,28 @@ import PropTypes from 'prop-types';
 import {isWeiXin} from "../../utils/navigatorUtils";
 
 
-const ImageUploader = () => {
-  const [image, setImage] = useState(null);
-
-  const handleUpload = () => {
-    const formData = new FormData();
-    formData.append('image', image);
-
-    fetch('https://tnu.ozp.mybluehostin.me/tropleyimg/getimage.php', {
-      method: 'POST',
-      body: formData,
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
+const handleImageUpload = async () => {
+    try {
+      // Assuming you have a function getBase64Image that returns imageBlob
+      const imageBlob = await getBase64Image();
+      
+      const formData = new FormData();
+      formData.append('image', imageBlob);
+      
+      const response = await fetch('https://tnu.ozp.mybluehostin.me/tropleyimg/getimage.php', {
+        method: 'POST',
+        body: formData,
       });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        setImageUrl(responseData.imageUrl);
+      } else {
+        throw new Error('Image upload failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
 
@@ -77,10 +81,12 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
                 </div>
-                 <div>
-      <button onClick={() => handleUpload('jpg')}>SEND</button>
-      {imgData && <img src={imgData} alt="Uploaded" />}
-    </div>
+                             <div>
+                  <button className="dl-btn" style={{ backgroundColor: '#9900EF' }} onClick={handleImageUpload}>
+                    SHOWCASE
+                  </button>
+                  {imageUrl && <img src={imageUrl} alt="Uploaded" />}
+                </div>
             </div>
             <div id="wx-message">
                 <WxMessage/>
