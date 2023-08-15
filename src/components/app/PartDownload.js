@@ -40,7 +40,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
 
     const sendImageDataToServer = async (format, imageData) => {
         try {
-            const response = await axios.post('http://your-server-url/upload', {
+            const response = await axios.post('https://tnu.ozp.mybluehostin.me/tropleyimg/getimage.php', {
                 format: format,
                 imageData: imageData,
             });
