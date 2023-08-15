@@ -77,7 +77,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                         });
                 }}
             >
-                Show
+                ShowCase
             </button>
             </div>
             <div id="wx-message">
