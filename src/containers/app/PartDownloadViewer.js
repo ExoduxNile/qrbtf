@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import PartDownload from "../../components/app/PartDownload";
 import {saveImg, saveSvg} from "../../utils/downloader";
-import {getDownloadCount, increaseDownloadData, recordDownloadDetail} from "../../api/TcbHandler";
+//import {getDownloadCount, increaseDownloadData, recordDownloadDetail} from "../../api/TcbHandler";
 import {getParamDetailedValue, outerHtml} from "../../utils/util";
 import {handleDownloadImg, handleDownloadSvg} from "../../utils/gaHelper";
 
