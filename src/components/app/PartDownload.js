@@ -2,32 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import PropTypes from 'prop-types';
 import {isWeiXin} from "../../utils/navigatorUtils";
-
-
-const handleImageUpload = async () => {
-    try {
-      // Assuming you have a function getBase64Image that returns imageBlob
-      const imageBlob = await getBase64Image();
-      
-      const formData = new FormData();
-      formData.append('image', imageBlob);
-      
-      const response = await fetch('https://tnu.ozp.mybluehostin.me/tropleyimg/getimage.php', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        setImageUrl(responseData.imageUrl);
-      } else {
-        throw new Error('Image upload failed');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
+import axios from 'axios';
 
 const CountComponent = ({ value }) => {
     if (isNaN(value)) return null;
@@ -63,7 +38,18 @@ const ImgBox = ({ imgData }) => {
 const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) => {
     const [imgData, setImgData] = useState('');
 
-    
+    const sendImageDataToServer = async (format, imageData) => {
+        try {
+            const response = await axios.post('http://your-server-url/upload', {
+                format: format,
+                imageData: imageData,
+            });
+            console.log('Server response:', response.data);
+        } catch (error) {
+            console.error('Error sending data to server:', error);
+        }
+    };
+
 
     return (
         <div className="Qr-titled">
@@ -81,12 +67,18 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
                 </div>
-                             <div>
-                  <button className="dl-btn" style={{ backgroundColor: '#9900EF' }} onClick={handleImageUpload}>
-                    ADD
-                  </button>
-                  {imageUrl && <img src={imageUrl} alt="Uploaded" />}
-                </div>
+                <button
+                className="dl-btn"
+                onClick={() => {
+                    onImgDownload('jpg')
+                        .then(res => {
+                            setImgData(res);
+                            sendImageDataToServer('jpg', res); // Send JPG image data to server
+                        });
+                }}
+            >
+                SEND
+            </button>
             </div>
             <div id="wx-message">
                 <WxMessage/>
