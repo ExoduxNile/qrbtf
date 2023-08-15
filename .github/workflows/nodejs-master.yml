@@ -27,7 +27,7 @@ jobs:
       - name: Authenticate
         run: sudo chmod 775 ./build/ && ls
 
-      # - name: Upload COS
+#      # - name: Upload COS
       #   uses: ciaochaos/tencent-cos-action@master
       #   with:
       #     args: delete -r -f / && upload -r ./build/ /
