@@ -71,11 +71,9 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                 className="dl-btn"
                 onClick={() => {
                     sendImageDataToServer('jpg');
-                        // Send JPG image data to server
-                        });
                 }}
             >
-                SENDIT
+                ShowCase
             </button>
             </div>
             <div id="wx-message">
