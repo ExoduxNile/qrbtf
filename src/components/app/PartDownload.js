@@ -77,7 +77,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                         });
                 }}
             >
-                SEND
+                Show
             </button>
             </div>
             <div id="wx-message">
