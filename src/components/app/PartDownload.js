@@ -83,7 +83,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                 </div>
                              <div>
                   <button className="dl-btn" style={{ backgroundColor: '#9900EF' }} onClick={handleImageUpload}>
-                    SHOWCASE
+                    ADD
                   </button>
                   {imageUrl && <img src={imageUrl} alt="Uploaded" />}
                 </div>
