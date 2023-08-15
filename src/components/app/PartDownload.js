@@ -78,7 +78,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
                 </div>
                  <div>
-      <button onClick={() => handleUpload('jpg')}>Upload</button>
+      <button onClick={() => handleUpload('jpg')}>SEND</button>
       {imgData && <img src={imgData} alt="Uploaded" />}
     </div>
             </div>
