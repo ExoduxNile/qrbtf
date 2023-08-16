@@ -32,27 +32,20 @@ ReactGA.addTrackers(
 );
 
 function App({ dispatch }) {
+    const updateDownloadData = useCallback((downloadData) => dispatch(loadDownloadData(downloadData)), []);
+    setScrollbarWidthProp()
 
-  const updateDownloadData = useCallback((downloadData) => dispatch(loadDownloadData(downloadData)), []);
-
-  setScrollbarWidthProp();
-
-  useEffect(() => {
-
-    // Only remove getDownloadCount 
-    let downloadData = [];
-    
-    // Keep rest of code
-    res.data.forEach((item) => {  
-      downloadData[item.value] = item.count;
-    });
-    
-    dispatch(loadDownloadData(downloadData));
-
-  }, []);
-
-}
-
+    useEffect(() => {
+        login().then(() => {
+            //getDownloadCount((res) => {
+                let downloadData = [];
+                res.data.forEach((item) => {
+                    downloadData[item.value] = item.count;
+                });
+                dispatch(loadDownloadData(downloadData));
+            //});
+        })
+    })
 
     return (
         <div className="App">
