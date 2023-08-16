@@ -46,7 +46,7 @@ function App({ dispatch }) {
       downloadData[item.value] = item.count;
     });
 
-  }, [dispatch, downloadData]) // dispatch and downloadData should be added to dependencies
+  }, [dispatch]) // dispatch and downloadData should be added to dependencies
 
   return (
     <div className="App">
@@ -56,7 +56,7 @@ function App({ dispatch }) {
             <PartHeader/>
             <PartStylesViewer/>
             <PartParams/>
-            <PartDownloadViewer updateDownloadData={updateDownloadData}/> 
+            <PartDownloadViewer/> 
             <PartMore/>
             <PartFooter/>
           </div>
