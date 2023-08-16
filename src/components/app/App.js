@@ -33,13 +33,18 @@ function App({ dispatch }) {
   );
 
   useEffect(() => {
-    let downloadData = [];
+    const downloadData = {}; // Change this to an object instead of an array
 
-    forEach(item => {
-      downloadData[item.value] = item.count; 
+    // Assuming you have an array of items like this
+    const items = [
+      { value: 'item1', count: 5 },
+      { value: 'item2', count: 10 },
+      // ... other items
+    ];
+
+    items.forEach(item => {
+      downloadData[item.value] = item.count;
     });
-
-    dispatch(loadDownloadData(downloadData));
 
   }, [dispatch, downloadData]) // dispatch and downloadData should be added to dependencies
 

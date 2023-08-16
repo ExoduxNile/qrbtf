@@ -32,7 +32,7 @@ function saveDB(state, type, updateDownloadData) {
 
 const mapStateToProps = (state, ownProps) => ({
     value: state.value,
-    downloadCount: state.downloadData[state.value],
+    downloadCount: state[state.value],
     onSvgDownload: () => {
         saveSvg(state.value, outerHtml(state.selectedIndex));
         saveDB(state, 'svg', ownProps.updateDownloadData);
