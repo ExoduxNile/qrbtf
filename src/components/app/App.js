@@ -38,7 +38,7 @@ function App({ dispatch }) {
     // Assuming you have an array of items like this
     const items = [
       { value: 'item1', count: 5 },
-      { value: 'item2', count: 10 },
+      { value: 'item2', count: 10 }
       // ... other items
     ];
 
