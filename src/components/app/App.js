@@ -36,15 +36,15 @@ function App({ dispatch }) {
     setScrollbarWidthProp()
 
     useEffect(() => {
-        login().then(() => {
+        //login().then(() => {
             //getDownloadCount((res) => {
                 let downloadData = [];
-                res.data.forEach((item) => {
+                data.forEach((item) => {
                     downloadData[item.value] = item.count;
                 });
                 dispatch(loadDownloadData(downloadData));
             //});
-        })
+        //})
     })
 
     return (

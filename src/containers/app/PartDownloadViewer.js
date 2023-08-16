@@ -7,8 +7,8 @@ import {handleDownloadImg, handleDownloadSvg} from "../../utils/gaHelper";
 
 function saveDB(state, type, updateDownloadData) {
     return new Promise(resolve => {
-        increaseDownloadData(state.value, () => {
-            recordDownloadDetail({
+        //increaseDownloadData(state.value, () => {
+            //recordDownloadDetail({
                 text: state.textUrl,
                 value: state.value,
                 type: type,
@@ -24,16 +24,16 @@ function saveDB(state, type, updateDownloadData) {
                 }),
                 history: state.history
             }, () => {
-                getDownloadCount((res) => {
+                //getDownloadCount((res) => {
                     let downloadData = [];
                     res.data.forEach((item) => {
                         downloadData[item.value] = item.count;
                     });
                     updateDownloadData(downloadData);
                     resolve()
-                });
-            });
-        });
+                //});
+            //});
+        //});
     });
 }
 
