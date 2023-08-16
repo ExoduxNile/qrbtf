@@ -7,35 +7,28 @@ import {handleDownloadImg, handleDownloadSvg} from "../../utils/gaHelper";
 
 function saveDB(state, type, updateDownloadData) {
     return new Promise(resolve => {
-        //increaseDownloadData(state.value, () => {
-            //recordDownloadDetail({
-                text: state.textUrl,
-                value: state.value,
-                type: type,
-                params: state.paramInfo[state.selectedIndex].map((item, index) => {
-                    const value = getParamDetailedValue(item, state.paramValue[state.selectedIndex][index])
-                    if (typeof value != "string" || value.length <= 128) {
-                        return {
-                            key: item.key,
-                            value: value
-                        }
-                    }
-                    return {}
-                }),
-                history: state.history
-            }, () => {
-                //getDownloadCount((res) => {
-                    let downloadData = [];
-                    res.data.forEach((item) => {
-                        downloadData[item.value] = item.count;
-                    });
-                    updateDownloadData(downloadData);
-                    resolve()
-                //});
-            //});
-        //});
-    });
+        //recordDownloadDetail({
+            text: state.textUrl,
+            value: state.value,
+            type: type,
+            params: state.paramInfo[state.selectedIndex].map((item, index) => {
+                const value = getParamDetailedValue(item, state.paramValue[state.selectedIndex][index]);
+                if (typeof value !== "string" || value.length <= 128) {
+                    return {
+                        key: item.key,
+                        value: value
+                    };
+                }
+                return {};
+            }),
+            history: state.history
+        }, () => {
+            updateDownloadData(); // You are not passing any arguments, so ensure it's correct
+            resolve();
+        });
+    //});
 }
+
 
 const mapStateToProps = (state, ownProps) => ({
     value: state.value,

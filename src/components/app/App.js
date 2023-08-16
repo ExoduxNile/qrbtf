@@ -39,7 +39,7 @@ function App({ dispatch }) {
         //login().then(() => {
             //getDownloadCount((res) => {
                 let downloadData = [];
-                data.forEach((item) => {
+                forEach((item) => {
                     downloadData[item.value] = item.count;
                 });
                 dispatch(loadDownloadData(downloadData));
