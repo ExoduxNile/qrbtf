@@ -7,7 +7,6 @@ import {handleDownloadImg, handleDownloadSvg} from "../../utils/gaHelper";
 
 function saveDB(state, type, updateDownloadData) {
     return new Promise(resolve => {
-        //recordDownloadDetail({
             text: state.textUrl,
             value: state.value,
             type: type,
@@ -16,7 +15,7 @@ function saveDB(state, type, updateDownloadData) {
                 if (typeof value !== "string" || value.length <= 128) {
                     return {
                         key: item.key,
-                        value: value
+                        value: value,
                     };
                 }
                 return {};
@@ -26,7 +25,6 @@ function saveDB(state, type, updateDownloadData) {
             updateDownloadData(); // You are not passing any arguments, so ensure it's correct
             resolve();
         });
-    //});
 }
 
 
