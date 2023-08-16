@@ -10,7 +10,7 @@ import PartStylesViewer from "../../containers/app/PartStylesViewer";
 import {connect} from 'react-redux';
 import {loadDownloadData} from "../../actions";
 import ReactGA from 'react-ga';
-import {setScrollbarWidthProp} from "../../utils/util"
+import {setScrollbarWidthProp} from "../../utils/util";
 
 ReactGA.initialize('G-N6SB8GPHLZ');
 
