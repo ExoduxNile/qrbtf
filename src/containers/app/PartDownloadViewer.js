@@ -8,7 +8,7 @@ function saveDB(state, type, updateDownloadData) {
     return new Promise(resolve => {
             text: state.textUrl,
             value: state.value,
-            type: type,
+            type: type
             params: state.paramInfo[state.selectedIndex].map((item, index) => {
                 const value = getParamDetailedValue(item, state.paramValue[state.selectedIndex][index]);
                 if (typeof value !== "string" || value.length <= 128) {
