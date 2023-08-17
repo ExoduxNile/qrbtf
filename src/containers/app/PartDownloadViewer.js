@@ -18,7 +18,7 @@ function saveDB(state, type, updateDownloadData) {
                     };
                 }
                 return {};
-            })
+            });
             history: state.history
         }, () => {
             updateDownloadData(); // You are not passing any arguments, so ensure it's correct
