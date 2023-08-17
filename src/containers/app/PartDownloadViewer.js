@@ -1,3 +1,9 @@
+import {connect} from 'react-redux';
+import PartDownload from "../../components/app/PartDownload";
+import {saveImg, saveSvg} from "../../utils/downloader";
+import {getParamDetailedValue, outerHtml} from "../../utils/util";
+import {handleDownloadImg, handleDownloadSvg} from "../../utils/gaHelper";
+
 function saveDB(state, type, updateDownloadData) {
     return new Promise(resolve => {
         resolve({
@@ -42,3 +48,4 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 export default connect(mapStateToProps, null)(PartDownload);
+
