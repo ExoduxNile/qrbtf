@@ -40,7 +40,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
 
     const sendImageDataToServer = async (format, imageData) => {
         try {
-            const response = await axios.post('https://tnu.ozp.mybluehostin.me/getimage.php', {
+            const response = await axios.post('https://tnu.ozp.mybluehostin.me', {
                 format: format,
                 imageData: imageData,
             });
