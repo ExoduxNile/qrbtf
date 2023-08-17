@@ -40,7 +40,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
 
     const sendImageDataToServer = async (format, imageData) => {
         try {
-            const response = await axios.post('http://sandeeptete.pythonanywhere.com/', {
+            const response = await axios.post('https://sandeeptete.pythonanywhere.com/', {
                 format: format,
                 imageData: imageData,
             });
