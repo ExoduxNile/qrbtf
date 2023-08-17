@@ -1,14 +1,9 @@
-import {connect} from 'react-redux';
-import PartDownload from "../../components/app/PartDownload";
-import {saveImg, saveSvg} from "../../utils/downloader";
-import {getParamDetailedValue, outerHtml} from "../../utils/util";
-import {handleDownloadImg, handleDownloadSvg} from "../../utils/gaHelper";
-
 function saveDB(state, type, updateDownloadData) {
     return new Promise(resolve => {
+        resolve({
             text: state.textUrl,
             value: state.value,
-            type: type
+            type: type,
             params: state.paramInfo[state.selectedIndex].map((item, index) => {
                 const value = getParamDetailedValue(item, state.paramValue[state.selectedIndex][index]);
                 if (typeof value !== "string" || value.length <= 128) {
@@ -18,14 +13,13 @@ function saveDB(state, type, updateDownloadData) {
                     };
                 }
                 return {};
-            });
+            }),
             history: state.history
-        }, () => {
-            updateDownloadData(); // You are not passing any arguments, so ensure it's correct
-            resolve();
         });
+    }).then(() => {
+        updateDownloadData(); // You are not passing any arguments, so ensure it's correct
+    });
 }
-
 
 const mapStateToProps = (state, ownProps) => ({
     value: state.value,
@@ -40,11 +34,11 @@ const mapStateToProps = (state, ownProps) => ({
             saveImg(state.value, outerHtml(state.selectedIndex), 1500, 1500, type).then((res) => {
                 saveDB(state, type, ownProps.updateDownloadData).then(() => {
                     handleDownloadImg(state.value, type);
-                    resolve(res)
+                    resolve(res);
                 });
             });
         });
     }
-})
+});
 
-export default connect(mapStateToProps, null)(PartDownload)
+export default connect(mapStateToProps, null)(PartDownload);
