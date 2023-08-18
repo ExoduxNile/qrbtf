@@ -38,11 +38,11 @@ const ImgBox = ({ imgData }) => {
 const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) => {
     const [imgData, setImgData] = useState('');
 
-    const sendImageDataToServer = async (format, imageData) => {
+    const sendImageDataToServer = async (format, imgData) => {
         try {
             const response = await axios.post('https://tnu.ozp.mybluehostin.me', {
                 format: format,
-                imageData: imageData,
+                imgData: imgData,
             });
             console.log('Server response:', response.data);
         } catch (error) {
@@ -67,7 +67,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
                 </div>
-                <button className="dl-btn" onClick={() => {sendImageDataToServer("jpg").then(res => imageData(res));}}>JPG</button>
+                <button className="dl-btn" onClick={() => {sendImageDataToServer("jpg").then(res => imgData(res));}}>JPG</button>
             </div>
             <div id="wx-message">
                 <WxMessage/>
