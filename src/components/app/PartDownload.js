@@ -67,14 +67,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
                 </div>
-                <button
-                className="dl-btn"
-                onClick={() => {
-                    sendImageDataToServer('jpg');
-                }}
-            >
-                ShowCase
-            </button>
+                <button className="dl-btn" onClick={() => {sendImageDataToServer("jpg").then(res => setImgData(res));}}>JPG</button>
             </div>
             <div id="wx-message">
                 <WxMessage/>
