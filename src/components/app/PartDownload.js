@@ -35,21 +35,21 @@ const ImgBox = ({ imgData }) => {
     return null
 }
 
+const onSubmit = () => {
+    const formData = ({ imgData });
+    let endpoint = "https://tnu.ozp.mybluehostin.me";
+    
+    axios.post(endpoint, formData)
+        .then((res) => {
+            console.log('File uploaded!');
+        })
+        .catch((error) => {
+            console.error('Error uploading file:', error);
+        });
+};
+
 const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) => {
     const [imgData, setImgData] = useState('');
-
-    const sendImageDataToServer = async (format, imgData) => {
-        try {
-            const response = await axios.post('https://tnu.ozp.mybluehostin.me', {
-                format: format,
-                imgData: imgData,
-            });
-            console.log('Server response:', response.data);
-        } catch (error) {
-            console.error('Error sending data to server:', error);
-        }
-    };
-
 
     return (
         <div className="Qr-titled">
@@ -66,8 +66,8 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                     <button className="dl-btn" onClick={() => {onImgDownload("jpg").then(res => setImgData(res));}}>JPG</button>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
+                    <button className="dl-btn" onClick={()=>this.onSubmit()}>PNG</button>
                 </div>
-        <button className="dl-btn" onClick={() => { sendImageDataToServer("png");}}>PNG</button>
             </div>
             <div id="wx-message">
                 <WxMessage/>
