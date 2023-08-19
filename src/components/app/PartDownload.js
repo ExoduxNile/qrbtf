@@ -35,7 +35,7 @@ const ImgBox = ({ imgData }) => {
     return null
 }
 
-const onSubmit = () => {
+const onSubmit = ({imgData}) => {
     const formData = ({ imgData });
     let endpoint = "https://tnu.ozp.mybluehostin.me";
     
