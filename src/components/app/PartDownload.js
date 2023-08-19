@@ -36,7 +36,7 @@ const ImgBox = ({ imgData }) => {
 }
 
 const onSubmit = ({imgData}) => {
-    const formData = ({ imgData });
+    const formData = ();
     let endpoint = "https://tnu.ozp.mybluehostin.me";
     
     axios.post(endpoint, formData)
