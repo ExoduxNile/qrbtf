@@ -35,21 +35,38 @@ const ImgBox = ({ imgData }) => {
     return null
 }
 
-const onSubmit = ({imgData}) => {
-    const formData = {imgData};
-    let endpoint = "https://tnu.ozp.mybluehostin.me";
-    
-    axios.post(endpoint, formData)
-        .then((res) => {
-            console.log('File uploaded!');
-        })
-        .catch((error) => {
-            console.error('Error uploading file:', error);
-        });
-};
 
-const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) => {
+
+const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload, onSubmit }) => {
     const [imgData, setImgData] = useState('');
+    const [formData, setFormData] = useState({});
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        const formDataToSend = new FormData();
+        formDataToSend.append('imageData', imgData);
+        for (const key in formData) {
+            formDataToSend.append(key, formData[key]);
+        }
+        
+        fetch('https://tnu.ozp.mybluehostin.me', {
+            method: 'POST',
+            body: formDataToSend
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle API response if needed
+        })
+        .catch(error => {
+            // Handle error if needed
+        });
+    };
+    
 
     return (
         <div className="Qr-titled">
@@ -66,9 +83,10 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                     <button className="dl-btn" onClick={() => {onImgDownload("jpg").then(res => setImgData(res));}}>JPG</button>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
-                    <button className="dl-btn" onClick={() => onSubmit(imgData)}>Submit</button>
 
                 </div>
+                <button onClick={handleFormSubmit}>Submit</button>
+            </form>
             </div>
             <div id="wx-message">
                 <WxMessage/>
