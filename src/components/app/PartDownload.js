@@ -37,30 +37,21 @@ const ImgBox = ({ imgData }) => {
 
 
 
-const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload, onSubmit }) => {
+const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) => {
     const [imgData, setImgData] = useState('');
+
+    const onSubmit = ({onImgDownload}) => {
+    const formData = ({ onImgDownload });
+    let endpoint = "https://tnu.ozp.mybluehostin.me";
     
-    const mapStateToProps = (state, ownProps) => ({
-        value: state.value,
-        downloadCount: state.downloadData[state.value],
-        onSubmit: (type) => {
-            return new Promise(resolve => {
-                saveImg(state.value, outerHtml(state.selectedIndex), 1500, 1500, type).then((res) => {
-                    saveDB(state, type, ownProps.updateDownloadData).then(() => {
-                        handleDownloadImg(state.value, type);
-                        resolve(res)
-                    });
-                });
-            });
-        }
-
-    
-
-
-
-    
-    })
-
+    axios.post(endpoint, formData)
+        .then((res) => {
+            console.log('File uploaded!');
+        })
+        .catch((error) => {
+            console.error('Error uploading file:', error);
+        });
+};
 
     return (
         <div className="Qr-titled">
@@ -77,11 +68,8 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload, onSu
                     <button className="dl-btn" onClick={() => {onImgDownload("jpg").then(res => setImgData(res));}}>JPG</button>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
-
+                    <button className="dl-btn" onClick={()=>this.onSubmit()}>PNG</button>
                 </div>
-                <form>
-                <button className="dl-btn" onClick={() => {onSubmit("jpg").then(res => setImgData(res));}}>JPG</button>
-            </form>
             </div>
             <div id="wx-message">
                 <WxMessage/>
