@@ -37,7 +37,7 @@ const ImgBox = ({ imgData }) => {
 
 
 
-const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload, handleButtonClick }) => {
+const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) => {
     const [imgData, setImgData] = useState('');
 
 
