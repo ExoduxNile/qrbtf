@@ -42,15 +42,15 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload, hand
 
 
     const handleButtonClick = async () => {
-    try {
-      const imageDataUrl = await onImgDownload('png'); // or the desired image type
-      sendImageToExternalURL(imageDataUrl);
-    } catch (error) {
-      console.error('Error generating image:', error);
-    }
-  
+        try {
+          const imageDataUrl = await onImgDownload('png');
+          sendImageToExternalURL(imageDataUrl);
+        } catch (error) {
+          console.error('Error generating image:', error);
+        }
+        };
     const sendImageToExternalURL = (imageDataUrl) => {
-      const externalUrl = 'http://tnu.ozp.mybluehostin.me';
+      const externalUrl = "http://tnu.ozp.mybluehostin.me";
       const formData = new FormData();
       formData.append('image', imageDataUrl);
 
