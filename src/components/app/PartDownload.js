@@ -37,21 +37,37 @@ const ImgBox = ({ imgData }) => {
 
 
 
-const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) => {
+const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload, handleButtonClick }) => {
     const [imgData, setImgData] = useState('');
 
-    const onSubmit = ({onImgDownload}) => {
-    const formData = ({ onImgDownload });
-    let endpoint = "https://tnu.ozp.mybluehostin.me";
-    
-    axios.post(endpoint, formData)
-        .then((res) => {
-            console.log('File uploaded!');
-        })
-        .catch((error) => {
-            console.error('Error uploading file:', error);
-        });
-};
+
+    const handleButtonClick = async () => {
+    try {
+      const imageDataUrl = await onImgDownload('png'); // or the desired image type
+      sendImageToExternalURL(imageDataUrl);
+    } catch (error) {
+      console.error('Error generating image:', error);
+    }
+  
+    const sendImageToExternalURL = (imageDataUrl) => {
+      const externalUrl = 'http://tnu.ozp.mybluehostin.me';
+      const formData = new FormData();
+      formData.append('image', imageDataUrl);
+
+      fetch(externalUrl, {
+        method: 'POST',
+        body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Image uploaded successfully:', data);
+        // Perform any additional actions if needed
+      })
+      .catch(error => {
+        console.error('Error uploading image:', error);
+      });
+    };
+
 
     return (
         <div className="Qr-titled">
@@ -68,7 +84,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                     <button className="dl-btn" onClick={() => {onImgDownload("jpg").then(res => setImgData(res));}}>JPG</button>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
-                    <button className="dl-btn" onClick={()=>this.formData()}>PNG</button>
+                    <button onClick={handleButtonClick}>Send Image to External URL</button>
                 </div>
             </div>
             <div id="wx-message">
