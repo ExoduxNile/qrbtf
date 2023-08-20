@@ -85,6 +85,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload, onSu
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
 
                 </div>
+                <form>
                 <button onClick={handleFormSubmit}>Submit</button>
             </form>
             </div>
