@@ -39,34 +39,28 @@ const ImgBox = ({ imgData }) => {
 
 const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload, onSubmit }) => {
     const [imgData, setImgData] = useState('');
-    const [formData, setFormData] = useState({});
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        const formDataToSend = new FormData();
-        formDataToSend.append('imageData', imgData);
-        for (const key in formData) {
-            formDataToSend.append(key, formData[key]);
-        }
-        
-        fetch('https://tnu.ozp.mybluehostin.me', {
-            method: 'POST',
-            body: formDataToSend
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle API response if needed
-        })
-        .catch(error => {
-            // Handle error if needed
-        });
-    };
     
+    const mapStateToProps = (state, ownProps) => ({
+        value: state.value,
+        downloadCount: state.downloadData[state.value],
+        onSubmit: (type) => {
+            return new Promise(resolve => {
+                saveImg(state.value, outerHtml(state.selectedIndex), 1500, 1500, type).then((res) => {
+                    saveDB(state, type, ownProps.updateDownloadData).then(() => {
+                        handleDownloadImg(state.value, type);
+                        resolve(res)
+                    });
+                });
+            });
+        }
+
+    
+
+
+
+    
+    })
+
 
     return (
         <div className="Qr-titled">
@@ -86,7 +80,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload, onSu
 
                 </div>
                 <form>
-                <button onClick={handleFormSubmit}>Submit</button>
+                <button className="dl-btn" onClick={() => {onSubmit("jpg").then(res => setImgData(res));}}>JPG</button>
             </form>
             </div>
             <div id="wx-message">
