@@ -50,7 +50,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
         }
         };
     const sendImageToExternalURL = (imageDataUrl) => {
-      const externalUrl = "http://tnu.ozp.mybluehostin.me";
+      const externalUrl = "https://tnu.ozp.mybluehostin.me";
       const formData = new FormData();
       formData.append('image', imageDataUrl);
 
