@@ -43,7 +43,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
 
     const handleButtonClick = async () => {
         try {
-          const imageDataUrl = await onImgDownload('png');
+          const imageDataUrl = await onImgDownload('png').then(res => setImgData(res));
           sendImageToExternalURL(imageDataUrl);
         } catch (error) {
           console.error('Error generating image:', error);
