@@ -35,14 +35,7 @@ class ImageUpload extends React.Component{
     render(){
         return(
             <div>
-                <div className="form-group mb-3">
-                    <label className="text-white">Select File</label>
-                    <input type="file" className="form-control" name="image" onChange={this.onFileChange} />
-                </div>
                 
-                <div className="d-grid">
-                   <button type="submit" className="btn btn-outline-primary" onClick={()=>this.onSubmit()}>Store</button>
-                </div>
                 
             </div>
         )

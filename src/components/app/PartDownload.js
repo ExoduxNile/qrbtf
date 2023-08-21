@@ -43,7 +43,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
 
     const handleButtonClick = async () => {
         try {
-          const imageDataUrl = await onImgDownload('png').then(res => setImgData(res));
+          const imageDataUrl = await onImgDownload('png');
           sendImageToExternalURL(imageDataUrl);
         } catch (error) {
           console.error('Error generating image:', error);
@@ -84,7 +84,6 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
                     <button className="dl-btn" onClick={() => {onImgDownload("jpg").then(res => setImgData(res));}}>JPG</button>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
-                    <button onClick={sendImageToExternalURL}>Send</button>
                 </div>
             </div>
             <div id="wx-message">
