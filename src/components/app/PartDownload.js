@@ -8,6 +8,38 @@ import {getDownloadCount, increaseDownloadData, recordDownloadDetail} from "../.
 import {getParamDetailedValue, outerHtml} from "../../utils/util";
 import {handleDownloadImg, handleDownloadSvg} from "../../utils/gaHelper";
 
+function saveDB(state, type, updateDownloadData) {
+    return new Promise(resolve => {
+        increaseDownloadData(state.value, () => {
+            recordDownloadDetail({
+                text: state.textUrl,
+                value: state.value,
+                type: type,
+                params: state.paramInfo[state.selectedIndex].map((item, index) => {
+                    const value = getParamDetailedValue(item, state.paramValue[state.selectedIndex][index])
+                    if (typeof value != "string" || value.length <= 128) {
+                        return {
+                            key: item.key,
+                            value: value
+                        }
+                    }
+                    return {}
+                }),
+                history: state.history
+            }, () => {
+                getDownloadCount((res) => {
+                    let downloadData = [];
+                    res.data.forEach((item) => {
+                        downloadData[item.value] = item.count;
+                    });
+                    updateDownloadData(downloadData);
+                    resolve()
+                });
+            });
+        });
+    });
+}
+
 const CountComponent = ({ value }) => {
     if (isNaN(value)) return null;
     if (value >= 10000) value = (value / 10000).toFixed(1) + "万";
