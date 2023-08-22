@@ -45,7 +45,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
     const [imgData, setImgData] = useState('');
 
 
-const handleImageDownload = (type) => {
+const handleImageDownload = (type,state, ownProps) => {
   return new Promise(resolve => {
     saveImg(state.value, outerHtml(state.selectedIndex), 1500, 1500, type).then(image => {
       fetch('/upload-image', {
