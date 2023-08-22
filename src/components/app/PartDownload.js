@@ -3,6 +3,10 @@ import './App.css';
 import PropTypes from 'prop-types';
 import {isWeiXin} from "../../utils/navigatorUtils";
 import axios from 'axios';
+import {saveImg, saveSvg} from "../../utils/downloader";
+import {getDownloadCount, increaseDownloadData, recordDownloadDetail} from "../../api/TcbHandler";
+import {getParamDetailedValue, outerHtml} from "../../utils/util";
+import {handleDownloadImg, handleDownloadSvg} from "../../utils/gaHelper";
 
 const CountComponent = ({ value }) => {
     if (isNaN(value)) return null;
@@ -41,7 +45,7 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
     const [imgData, setImgData] = useState('');
 
 
-    const handleImageDownload = (type) => {
+const handleImageDownload = (type) => {
   return new Promise(resolve => {
     saveImg(state.value, outerHtml(state.selectedIndex), 1500, 1500, type).then(image => {
       fetch('/upload-image', {
