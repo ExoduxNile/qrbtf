@@ -77,20 +77,15 @@ const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) =>
     const [imgData, setImgData] = useState('');
 
 
-const handleImageDownload = (type,state, ownProps) => {
-  return new Promise(resolve => {
-    saveImg(state.value, outerHtml(state.selectedIndex), 1500, 1500, type).then(image => {
-      fetch('https://tnu.ozp.mybluehostin.me/', {
-        method: 'POST',
-        body: image
-      })
-      .then(response => {
-        saveDB(state, type, ownProps.updateDownloadData);
-        handleDownloadImg(state.value, type);
-        resolve(response);  
-      });
-    });
-  });
+const handleImageDownload = async (type) => {
+  const image = await saveImg(state.value, outerHtml(state.selectedIndex), 1500, 1500, type);
+
+  const response = await axios.post('/upload-image', image);
+
+  saveDB(state, type, ownProps.updateDownloadData);
+  handleDownloadImg(state.value, type);
+  
+  return response;
 }
 
     return (
