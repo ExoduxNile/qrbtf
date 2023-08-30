@@ -51,7 +51,7 @@ const WxMessage = () => {
         return (
             <div className="note-font" id="wx-message-inner">
     This style does not support downloading SVG,<br />
-    please download JPG and long press to save the QR code.
+    please download JPEG and long press to save the QR code.
 </div>
         )
     }
