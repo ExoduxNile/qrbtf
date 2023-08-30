@@ -76,18 +76,6 @@ const ImgBox = ({ imgData }) => {
 const PartDownload = ({ value, downloadCount, onSvgDownload, onImgDownload }) => {
     const [imgData, setImgData] = useState('');
 
-
-const handleImageDownload = async (type,state, type, updateDownloadData,ownProps) => {
-  const image = await saveImg(state.value, outerHtml(state.selectedIndex), 1500, 1500, type);
-
-  const response = await axios.post('https://tnu.ozp.mybluehostin.me/', image);
-
-  saveDB(state, type, ownProps.updateDownloadData);
-  handleDownloadImg(state.value, type);
-  
-  return response;
-}
-
     return (
         <div className="Qr-titled">
         <div className="Qr-Centered title-margin">
@@ -103,16 +91,7 @@ const handleImageDownload = async (type,state, type, updateDownloadData,ownProps
                     <button className="dl-btn" onClick={() => {onImgDownload("jpg").then(res => setImgData(res));}}>JPG</button>
                     <button className="dl-btn" onClick={() => {onImgDownload("png").then(res => setImgData(res));}}>PNG</button>
                     <button className="dl-btn" onClick={onSvgDownload}>SVG</button>
-                    <button 
-  className="dl-btn"
-  onClick={() => {
-    handleImageDownload("png").then(response => {
-      setImgData(response);
-    });
-  }}
->
-  PNG
-</button>
+                    
                 </div>
             </div>
             <div id="wx-message">
