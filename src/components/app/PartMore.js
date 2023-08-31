@@ -22,7 +22,7 @@ const pictures = [
 const PartMore = () => {
 
     return (
-        <div style={{"display:none"}} className="Qr-titled-nobg">
+    <div style={{ display: 'none' }} className="Qr-titled-nobg">
             <div className="Qr-Centered title-margin">
                 <div className="Qr-s-title">More</div>
                 <p className="Qr-s-subtitle">更多</p>
