@@ -1,32 +1,9 @@
 import { useEffect } from 'react';
 import puppeteer from 'puppeteer';
 
-const getMapsData = async () => {     
-        browser = await puppeteer.launch({
-            headless: false,
-            args: ["--disabled-setuid-sandbox", "--no-sandbox"],
-        });
-        const page = await browser.newPage();
-        await page.setExtraHTTPHeaders({
-            "User-Agent":
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4882.194 Safari/537.36",
-        })
-        
-        
-        await page.goto("https://www.google.com/maps/search/Starbucks/@26.8484046,75.7215344,12z/data=!3m1!4b1" , {
-            waitUntil: 'domcontentloaded',
-            timeout: 60000
-        })
-        
-        await page.waitForTimeout(3000);
-        
-        let data =  await scrollPage(page,".m6QErb[aria-label]",2)
-        
-        console.log(data)
-        await browser.close();
-        };
+const puppeteer = require('puppeteer');
 
-        const extractItems = async(page)  => {
+    const extractItems = async(page)  => {
         let maps_data = await page.evaluate(() => {
         return Array.from(document.querySelectorAll(".Nv2PK")).map((el) => {
             const link = el.querySelector("a.hfpxzc").getAttribute("href");
@@ -49,4 +26,45 @@ const getMapsData = async () => {
         });
         });
         return maps_data;
-        }    
+        }
+    
+        const scrollPage = async(page, scrollContainer, itemTargetCount) => {
+        let items = [];
+        let previousHeight = await page.evaluate(`document.querySelector("${scrollContainer}").scrollHeight`);
+        while (itemTargetCount > items.length) {
+            items = await extractItems(page);
+            await page.evaluate(`document.querySelector("${scrollContainer}").scrollTo(0, document.querySelector("${scrollContainer}").scrollHeight)`);
+            await page.evaluate(`document.querySelector("${scrollContainer}").scrollHeight > ${previousHeight}`);
+            await page.waitForTimeout(2000);
+        }
+        return items;
+        }
+    
+    
+    
+    const getMapsData = async () => {
+        browser = await puppeteer.launch({
+        headless: false,
+        args: ["--disabled-setuid-sandbox", "--no-sandbox"],
+        });
+        const [page] = await browser.pages();
+        await page.setExtraHTTPHeaders({
+            "User-Agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4882.194 Safari/537.36",
+        })
+        
+    
+        await page.goto("https://www.google.com/maps/search/Starbucks/@26.8484046,75.7215344,12z/data=!3m1!4b1" , {
+            waitUntil: 'domcontentloaded',
+            timeout: 60000
+        })
+    
+        await page.waitForTimeout(5000)  
+    
+    let data =  await scrollPage(page,".m6QErb[aria-label]",2)
+    
+    console.log(data)
+    await browser.close();
+    };
+    
+    getMapsData(); 
