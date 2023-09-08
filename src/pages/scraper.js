@@ -4,7 +4,7 @@ import React from 'react';
 
 const puppeteer = require('puppeteer');
 
-const Home = () => {
+const Scraper = () => {
   return (
     const extractItems = async(page)  => {
         let maps_data = await page.evaluate(() => {
@@ -75,4 +75,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Scraper;
