@@ -56,7 +56,7 @@ function App({ dispatch }) {
         <header className="App-header">
           <div className="Layout">
             <div className="Qr-outer">
-              <Header /> {/* Include your Header component */}
+              <PartHeader /> {/* Include your Header component */}
               <PartStylesViewer />
               <PartParams />
               <PartDownloadViewer updateDownloadData={updateDownloadData} />
@@ -64,7 +64,7 @@ function App({ dispatch }) {
               <PartFooter />
             </div>
           </div>
-        </PartHeader>
+        </Header>
       </div>
       <Routes>
         <Route path="/scraper" element={<Scraper />} />
