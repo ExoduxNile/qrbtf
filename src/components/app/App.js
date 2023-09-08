@@ -12,7 +12,7 @@ import {connect} from 'react-redux';
 import {loadDownloadData} from "../../actions";
 import ReactGA from 'react-ga';
 import {setScrollbarWidthProp} from "../../utils/util"
-import scraper from '../pages/scraper';
+import scraper from './pages/scraper';
 
 ReactGA.initialize('G-N6SB8GPHLZ');
 
