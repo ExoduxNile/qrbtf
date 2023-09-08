@@ -12,7 +12,7 @@ import {connect} from 'react-redux';
 import {loadDownloadData} from "../../actions";
 import ReactGA from 'react-ga';
 import {setScrollbarWidthProp} from "../../utils/util"
-import Scraper from "../pages/Scraper";
+import scraper from '../pages/scraper';
 
 ReactGA.initialize('G-N6SB8GPHLZ');
 
@@ -49,29 +49,27 @@ function App({ dispatch }) {
     })
 
     return (
+
         <BrowserRouter>
-      <Header />
+      <div className="App">
+        <header className="App-header">
+          <div className="Layout">
+            <div className="Qr-outer">
+              <Header /> {/* Include your Header component */}
+              <PartStylesViewer />
+              <PartParams />
+              <PartDownloadViewer updateDownloadData={updateDownloadData} />
+              <PartMore />
+              <PartFooter />
+            </div>
+          </div>
+        </header>
+      </div>
       <Routes>
-        <Route path="/scraper" element={<Scraper />} />        
+        <Route path="/scraper" element={<Scraper />} />
       </Routes>
-      <Footer />
+      <PartFooter /> 
     </BrowserRouter>
-        <div className="App">
-            <header className="App-header">
-                <div className="Layout">
-                    <div className="Qr-outer">
-                        <>
-          <PartHeader />
-          <PartStylesViewer />
-          <PartParams />
-          <PartDownloadViewer updateDownloadData={updateDownloadData} />
-          <PartMore />
-          <PartFooter />
-        </>
-                    </div>
-                </div>
-            </header>
-        </div>
     );
 }
 
