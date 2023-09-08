@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
 import {createStore} from "redux";
-
+import scraper from './pages/scraper';
 const store = createStore(rootReducer);
 
 ReactDOM.render(
