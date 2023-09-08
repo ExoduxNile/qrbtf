@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 import puppeteer from 'puppeteer';
+import React from 'react';
 
 const puppeteer = require('puppeteer');
 
+const Home = () => {
+  return (
     const extractItems = async(page)  => {
         let maps_data = await page.evaluate(() => {
         return Array.from(document.querySelectorAll(".Nv2PK")).map((el) => {
@@ -68,3 +71,8 @@ const puppeteer = require('puppeteer');
     };
     
     getMapsData(); 
+
+    );
+};
+
+export default Home;
