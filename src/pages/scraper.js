@@ -3,8 +3,7 @@ import puppeteer from 'puppeteer';
 import React from 'react';
 
 const Scraper = () => {
-  return (
-    const extractItems = async(page)  => {
+  const extractItems = async(page)  => {
         let maps_data = await page.evaluate(() => {
         return Array.from(document.querySelectorAll(".Nv2PK")).map((el) => {
             const link = el.querySelector("a.hfpxzc").getAttribute("href");
@@ -69,8 +68,6 @@ const Scraper = () => {
     };
     
     getMapsData(); 
-
-    );
 };
 
 export default Scraper;
