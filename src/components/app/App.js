@@ -56,22 +56,22 @@ function App({ dispatch }) {
       </Routes>
       <Footer />
     </BrowserRouter>
-    <>
         <div className="App">
             <header className="App-header">
                 <div className="Layout">
                     <div className="Qr-outer">
-                        <PartHeader/>
-                        <PartStylesViewer/>
-                        <PartParams/>
-                        <PartDownloadViewer updateDownloadData={updateDownloadData}/>
-                        <PartMore/>
-                        <PartFooter/>
+                        <>
+          <PartHeader />
+          <PartStylesViewer />
+          <PartParams />
+          <PartDownloadViewer updateDownloadData={updateDownloadData} />
+          <PartMore />
+          <PartFooter />
+        </>
                     </div>
                 </div>
             </header>
         </div>
-        <>
     );
 }
 
