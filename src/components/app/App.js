@@ -69,7 +69,6 @@ function App({ dispatch }) {
       <Routes>
         <Route path="/scraper" element={<Scraper />} />
       </Routes>
-      <PartFooter /> 
     </BrowserRouter>
     );
 }
