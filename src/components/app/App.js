@@ -56,7 +56,7 @@ function App({ dispatch }) {
         <header className="App-header">
           <div className="Layout">
             <div className="Qr-outer">
-              <PartHeader /> {/* Include your Header component */}
+              <Header /> {/* Include your Header component */}
               <PartStylesViewer />
               <PartParams />
               <PartDownloadViewer updateDownloadData={updateDownloadData} />
