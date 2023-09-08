@@ -13,6 +13,7 @@ import {loadDownloadData} from "../../actions";
 import ReactGA from 'react-ga';
 import {setScrollbarWidthProp} from "../../utils/util"
 import scraper from '../../pages/scraper';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Import BrowserRouter, Routes, and Route
 
 ReactGA.initialize('G-N6SB8GPHLZ');
 
@@ -55,7 +56,7 @@ function App({ dispatch }) {
         <header className="App-header">
           <div className="Layout">
             <div className="Qr-outer">
-              <Header /> {/* Include your Header component */}
+              <PartHeader /> {/* Include your Header component */}
               <PartStylesViewer />
               <PartParams />
               <PartDownloadViewer updateDownloadData={updateDownloadData} />
@@ -63,7 +64,7 @@ function App({ dispatch }) {
               <PartFooter />
             </div>
           </div>
-        </header>
+        </PartHeader>
       </div>
       <Routes>
         <Route path="/scraper" element={<Scraper />} />
