@@ -18,7 +18,7 @@ const PartStyles = ({ setParamInfo }) => {
             <div className="Qr-s-title">Styles</div>
             <div className="Qr-s-subtitle Qr-rel">
                 Click to select a style
-                {isPC() ? <div className="Qr-style-hint">Drag and slide to right</div> : null}
+                {isPC() ? <div className="Qr-style-hint">Drag and slide to left</div> : null}
             </div>
         </div>
         <ScrollContainer
