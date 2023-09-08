@@ -12,7 +12,7 @@ import {connect} from 'react-redux';
 import {loadDownloadData} from "../../actions";
 import ReactGA from 'react-ga';
 import {setScrollbarWidthProp} from "../../utils/util"
-import Scraper from '../pages/Scraper';
+import Scraper from "../pages/Scraper";
 
 ReactGA.initialize('G-N6SB8GPHLZ');
 
@@ -56,6 +56,7 @@ function App({ dispatch }) {
       </Routes>
       <Footer />
     </BrowserRouter>
+    <>
         <div className="App">
             <header className="App-header">
                 <div className="Layout">
@@ -70,6 +71,7 @@ function App({ dispatch }) {
                 </div>
             </header>
         </div>
+        <>
     );
 }
 

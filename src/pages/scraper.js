@@ -2,8 +2,6 @@ import { useEffect } from 'react';
 import puppeteer from 'puppeteer';
 import React from 'react';
 
-const puppeteer = require('puppeteer');
-
 const Scraper = () => {
   return (
     const extractItems = async(page)  => {
